@@ -1,0 +1,1124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template Library</title>
+<link rel="stylesheet" href="studio.css">
+<style>
+  main { padding: 32px var(--gutter) 80px; max-width: 1800px; margin: 0 auto; }
+  .head { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: end; justify-content: space-between; border-bottom: 1px solid var(--ln); padding-bottom: 20px; }
+  .head h1 { font-size: clamp(40px, 7vw, 88px); line-height: .9; }
+  .head p { color: var(--mu); max-width: 62ch; }
+  .filters { display: grid; gap: 8px; margin: 20px 0 28px; }
+  .filters div { display: flex; flex-wrap: wrap; gap: 6px; }
+  .filters button { font: 500 12px/1 var(--mono); text-transform: uppercase; border: 1px solid var(--ln-2); padding: 10px 14px; min-height: 40px; }
+  .count { font: 12px var(--mono); color: var(--mu); }
+  .grid { columns: 4 300px; column-gap: 20px; }
+  .t { break-inside: avoid; margin: 0 0 20px; background: var(--panel); border: 1px solid var(--ln); }
+  .t[hidden] { display: none; }
+  .shot { display: block; width: 100%; cursor: zoom-in; }
+  .shot img { width: 100%; height: auto; }
+  figcaption { padding: 12px 14px 16px; display: grid; gap: 5px; }
+  figcaption h2 { font-size: 22px; line-height: 1.05; }
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .tags span { font: 500 10.5px/1 var(--mono); text-transform: uppercase; color: var(--ac); border: 1px solid var(--ln-2); padding: 4px 6px; }
+  .tags .o { color: var(--tx); }
+  .tags .a { color: var(--mu); }
+  .mood { color: var(--ac); font: 500 12px var(--mono); text-transform: uppercase; }
+  .m { color: var(--mu); font-size: 14px; }
+  .m b { color: var(--tx); font-weight: 600; }
+  dialog { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 96vh; }
+  dialog::backdrop { background: rgba(0, 0, 0, .85); }
+  dialog img { max-width: 96vw; max-height: 92vh; width: auto; height: auto; display: block; margin: 0 auto; }
+  dialog button { display: block; margin: 8px auto 0; font: 600 12px var(--mono); text-transform: uppercase; background: var(--ac); color: var(--on-ac); padding: 10px 16px; }
+</style>
+</head>
+<body>
+<main>
+  <header class="head">
+    <h1>Template<br><em>Library</em></h1>
+    <p>Designs to build from. Lintar's picks, numbered, plus the older mockups (tagged old). In Telegram: "templates cafe" sends the sheets, "new site ... with template 27" builds from one. The HTML is built only when a design is chosen for a client. <span class="count" id="count"></span></p>
+  </header>
+  <nav class="filters" aria-label="Filter">
+    <div><button type="button" data-niche="all" aria-pressed="true">All</button><button type="button" data-niche="cafe" aria-pressed="false">cafe</button><button type="button" data-niche="restaurant" aria-pressed="false">restaurant</button><button type="button" data-niche="workshop" aria-pressed="false">workshop</button></div>
+    <div><button type="button" data-tier="all" aria-pressed="true">All</button><button type="button" data-tier="free" aria-pressed="false">free</button><button type="button" data-tier="medium" aria-pressed="false">medium</button><button type="button" data-tier="high" aria-pressed="false">high</button></div>
+    <div><button type="button" data-tone="all" aria-pressed="true">All</button><button type="button" data-tone="light" aria-pressed="false">light</button><button type="button" data-tone="dark" aria-pressed="false">dark</button></div>
+    <div><button type="button" data-source="all" aria-pressed="true">All</button><button type="button" data-source="picks" aria-pressed="false">picks</button><button type="button" data-source="old" aria-pressed="false">old</button></div>
+  </nav>
+  <section class="grid">
+    <figure class="t" data-num="1" data-niche="cafe" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t01-buah-segar.webp" aria-label="Open #1 buah segar full size"><img src="assets/pins/t01-buah-segar.webp" alt="#1 buah segar design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span>light</span><span class="a">ai pin</span></p>
+        <h2>#1 buah segar</h2>
+        <p class="mood">Bright and fresh</p>
+        <p class="m">yellow, cream, red</p>
+        <p class="m"><b>For</b> Juice bars, healthy cafes, fruit bowls.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="2" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t02-gelap-oranye.webp" aria-label="Open #2 gelap oranye full size"><img src="assets/pins/t02-gelap-oranye.webp" alt="#2 gelap oranye design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span><span class="a">ai pin</span></p>
+        <h2>#2 gelap oranye</h2>
+        <p class="mood">Moody and warm</p>
+        <p class="m">black, orange</p>
+        <p class="m"><b>For</b> Grill and seafood restaurants.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="3" data-niche="cafe" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t03-coklat-serif.webp" aria-label="Open #3 coklat serif full size"><img src="assets/pins/t03-coklat-serif.webp" alt="#3 coklat serif design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span>dark</span></p>
+        <h2>#3 coklat serif</h2>
+        <p class="mood">Warm and classic</p>
+        <p class="m">brown, caramel, cream</p>
+        <p class="m"><b>For</b> Coffee shops with a cosy interior.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="4" data-niche="cafe" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t04-kopi-gelap-mewah.webp" aria-label="Open #4 kopi gelap mewah full size"><img src="assets/pins/t04-kopi-gelap-mewah.webp" alt="#4 kopi gelap mewah design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span>dark</span></p>
+        <h2>#4 kopi gelap mewah</h2>
+        <p class="mood">Dark luxury</p>
+        <p class="m">espresso brown, gold</p>
+        <p class="m"><b>For</b> Premium coffee, takeaway brands.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="5" data-niche="cafe" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t05-sage-lembut.webp" aria-label="Open #5 sage lembut full size"><img src="assets/pins/t05-sage-lembut.webp" alt="#5 sage lembut design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span>light</span></p>
+        <h2>#5 sage lembut</h2>
+        <p class="mood">Soft and calm</p>
+        <p class="m">sage green, cream, orange</p>
+        <p class="m"><b>For</b> Specialty cafes, brunch, pastry.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="6" data-niche="cafe" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t06-kopi-melayang.webp" aria-label="Open #6 kopi melayang full size"><img src="assets/pins/t06-kopi-melayang.webp" alt="#6 kopi melayang design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span>dark</span></p>
+        <h2>#6 kopi melayang</h2>
+        <p class="mood">Floating product</p>
+        <p class="m">brown, cream</p>
+        <p class="m"><b>For</b> Coffee brands with branded cups.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="7" data-niche="cafe" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t07-manis-mauve.webp" aria-label="Open #7 manis mauve full size"><img src="assets/pins/t07-manis-mauve.webp" alt="#7 manis mauve design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span>light</span></p>
+        <h2>#7 manis mauve</h2>
+        <p class="mood">Sweet and soft</p>
+        <p class="m">mauve, pink, cream</p>
+        <p class="m"><b>For</b> Dessert cafes, patisseries.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="8" data-niche="restaurant" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t08-burger-berani.webp" aria-label="Open #8 burger berani full size"><img src="assets/pins/t08-burger-berani.webp" alt="#8 burger berani design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>free</span><span>light</span></p>
+        <h2>#8 burger berani</h2>
+        <p class="mood">Bold and loud</p>
+        <p class="m">red, yellow, cream</p>
+        <p class="m"><b>For</b> Burger, pizza, fast food.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="9" data-niche="cafe" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t09-hari-lebih-baik.webp" aria-label="Open #9 hari lebih baik full size"><img src="assets/pins/t09-hari-lebih-baik.webp" alt="#9 hari lebih baik design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span>light</span></p>
+        <h2>#9 hari lebih baik</h2>
+        <p class="mood">Friendly and fresh</p>
+        <p class="m">sage, cream, dark green</p>
+        <p class="m"><b>For</b> Neighbourhood coffee shops.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="10" data-niche="cafe" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t10-seduh-sempurna.webp" aria-label="Open #10 seduh sempurna full size"><img src="assets/pins/t10-seduh-sempurna.webp" alt="#10 seduh sempurna design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span>light</span></p>
+        <h2>#10 seduh sempurna</h2>
+        <p class="mood">Warm and homely</p>
+        <p class="m">brown, cream</p>
+        <p class="m"><b>For</b> Classic coffee shops, daily deals.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="11" data-niche="cafe" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t11-cipratan-oranye.webp" aria-label="Open #11 cipratan oranye full size"><img src="assets/pins/t11-cipratan-oranye.webp" alt="#11 cipratan oranye design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span>dark</span></p>
+        <h2>#11 cipratan oranye</h2>
+        <p class="mood">Playful splash</p>
+        <p class="m">black, peach orange</p>
+        <p class="m"><b>For</b> Young cafes, homemade coffee.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="12" data-niche="cafe" data-tier="high" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t12-produk-besar.webp" aria-label="Open #12 produk besar full size"><img src="assets/pins/t12-produk-besar.webp" alt="#12 produk besar design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>high</span><span>light</span></p>
+        <h2>#12 produk besar</h2>
+        <p class="mood">Product hero, giant type</p>
+        <p class="m">beige, brown</p>
+        <p class="m"><b>For</b> Bottled drinks, cafes selling own products.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="13" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t13-piring-hijau.webp" aria-label="Open #13 piring hijau full size"><img src="assets/pins/t13-piring-hijau.webp" alt="#13 piring hijau design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span><span class="a">ai pin</span></p>
+        <h2>#13 piring hijau</h2>
+        <p class="mood">Elegant top-down</p>
+        <p class="m">forest green, white plates</p>
+        <p class="m"><b>For</b> Healthy and fusion restaurants.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="14" data-niche="restaurant" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t14-sushi-teal.webp" aria-label="Open #14 sushi teal full size"><img src="assets/pins/t14-sushi-teal.webp" alt="#14 sushi teal design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>free</span><span>light</span><span class="a">ai pin</span></p>
+        <h2>#14 sushi teal</h2>
+        <p class="mood">Soft painted edges</p>
+        <p class="m">teal, peach, cream</p>
+        <p class="m"><b>For</b> Sushi and Japanese.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="15" data-niche="cafe" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t15-roti-segar.webp" aria-label="Open #15 roti segar full size"><img src="assets/pins/t15-roti-segar.webp" alt="#15 roti segar design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span>light</span></p>
+        <h2>#15 roti segar</h2>
+        <p class="mood">Warm bakery</p>
+        <p class="m">cream, brown</p>
+        <p class="m"><b>For</b> Bakeries, croissant shops.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="16" data-niche="cafe" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t16-kue-merah-muda.webp" aria-label="Open #16 kue merah muda full size"><img src="assets/pins/t16-kue-merah-muda.webp" alt="#16 kue merah muda design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span>light</span></p>
+        <h2>#16 kue merah muda</h2>
+        <p class="mood">Sweet and soft</p>
+        <p class="m">blush pink, brown</p>
+        <p class="m"><b>For</b> Cake shops, dessert cafes.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="17" data-niche="cafe" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t17-pagi-hangat.webp" aria-label="Open #17 pagi hangat full size"><img src="assets/pins/t17-pagi-hangat.webp" alt="#17 pagi hangat design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span>light</span></p>
+        <h2>#17 pagi hangat</h2>
+        <p class="mood">Cosy and polished</p>
+        <p class="m">cream, burgundy</p>
+        <p class="m"><b>For</b> Corner cafes with a bakery.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="18" data-niche="cafe" data-tier="medium" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t18-teh-elegan.webp" aria-label="Open #18 teh elegan full size"><img src="assets/pins/t18-teh-elegan.webp" alt="#18 teh elegan design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span>light</span></p>
+        <h2>#18 teh elegan</h2>
+        <p class="mood">Calm and refined</p>
+        <p class="m">grey stone, black</p>
+        <p class="m"><b>For</b> Tea houses, slow bars.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="19" data-niche="cafe" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t19-momen-manis-hijau.webp" aria-label="Open #19 momen manis hijau full size"><img src="assets/pins/t19-momen-manis-hijau.webp" alt="#19 momen manis hijau design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span>light</span></p>
+        <h2>#19 momen manis hijau</h2>
+        <p class="mood">Friendly premium</p>
+        <p class="m">cream, dark green, pastel cards</p>
+        <p class="m"><b>For</b> Coffee and cake cafes.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="20" data-niche="cafe" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t20-roti-gelap.webp" aria-label="Open #20 roti gelap full size"><img src="assets/pins/t20-roti-gelap.webp" alt="#20 roti gelap design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span>dark</span></p>
+        <h2>#20 roti gelap</h2>
+        <p class="mood">Dark luxury bakery</p>
+        <p class="m">black, orange, bread brown</p>
+        <p class="m"><b>For</b> Artisan bakeries.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="21" data-niche="cafe" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t21-coklat-krem.webp" aria-label="Open #21 coklat krem full size"><img src="assets/pins/t21-coklat-krem.webp" alt="#21 coklat krem design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span>light</span></p>
+        <h2>#21 coklat krem</h2>
+        <p class="mood">Warm and clear</p>
+        <p class="m">brown, cream, white</p>
+        <p class="m"><b>For</b> Coffee shops with promos.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="22" data-niche="restaurant" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t22-pizza-burger-sobek.webp" aria-label="Open #22 pizza burger sobek full size"><img src="assets/pins/t22-pizza-burger-sobek.webp" alt="#22 pizza burger sobek design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>free</span><span>light</span></p>
+        <h2>#22 pizza burger sobek</h2>
+        <p class="mood">Loud with torn edges</p>
+        <p class="m">red, orange, cream</p>
+        <p class="m"><b>For</b> Fast food, pizza, burgers.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="23" data-niche="cafe" data-tier="high" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t23-kopi-dan-pergi.webp" aria-label="Open #23 kopi dan pergi full size"><img src="assets/pins/t23-kopi-dan-pergi.webp" alt="#23 kopi dan pergi design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>high</span><span>dark</span></p>
+        <h2>#23 kopi dan pergi</h2>
+        <p class="mood">Dark with flying desserts</p>
+        <p class="m">black, pink</p>
+        <p class="m"><b>For</b> Cafes with macarons and cakes.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="24" data-niche="cafe" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t24-hijau-kaca.webp" aria-label="Open #24 hijau kaca full size"><img src="assets/pins/t24-hijau-kaca.webp" alt="#24 hijau kaca design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span>dark</span></p>
+        <h2>#24 hijau kaca</h2>
+        <p class="mood">Glass cards on green</p>
+        <p class="m">dark green, glass</p>
+        <p class="m"><b>For</b> Garden cafes, plant cafes.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="25" data-niche="cafe" data-tier="high" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t25-air-terjun-kaca.webp" aria-label="Open #25 air terjun kaca full size"><img src="assets/pins/t25-air-terjun-kaca.webp" alt="#25 air terjun kaca design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>high</span><span>dark</span></p>
+        <h2>#25 air terjun kaca</h2>
+        <p class="mood">Nature and glass</p>
+        <p class="m">jungle green, teal</p>
+        <p class="m"><b>For</b> Juice and health drink bars.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="26" data-niche="cafe" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t26-matcha.webp" aria-label="Open #26 matcha full size"><img src="assets/pins/t26-matcha.webp" alt="#26 matcha design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span>dark</span></p>
+        <h2>#26 matcha</h2>
+        <p class="mood">Japanese calm</p>
+        <p class="m">dark olive, matcha green</p>
+        <p class="m"><b>For</b> Matcha and tea bars.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="27" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t27-musim.webp" aria-label="Open #27 musim full size"><img src="assets/pins/t27-musim.webp" alt="#27 musim design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span></p>
+        <h2>#27 musim</h2>
+        <p class="mood">Fine dining, restrained</p>
+        <p class="m">black, warm white</p>
+        <p class="m"><b>For</b> Fine dining, chef restaurants.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="28" data-niche="cafe" data-tier="high" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t28-energi-alam.webp" aria-label="Open #28 energi alam full size"><img src="assets/pins/t28-energi-alam.webp" alt="#28 energi alam design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>high</span><span>dark</span></p>
+        <h2>#28 energi alam</h2>
+        <p class="mood">Nature and glass</p>
+        <p class="m">jungle green, lime</p>
+        <p class="m"><b>For</b> Juice bars, own drink products.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="29" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t29-burger-api.webp" aria-label="Open #29 burger api full size"><img src="assets/pins/t29-burger-api.webp" alt="#29 burger api design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span></p>
+        <h2>#29 burger api</h2>
+        <p class="mood">Hot and dramatic</p>
+        <p class="m">black, red</p>
+        <p class="m"><b>For</b> Burger joints, spicy food.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="30" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t30-piring-hijau-2.webp" aria-label="Open #30 piring hijau 2 full size"><img src="assets/pins/t30-piring-hijau-2.webp" alt="#30 piring hijau 2 design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span><span class="a">ai pin</span></p>
+        <h2>#30 piring hijau 2</h2>
+        <p class="mood">Elegant top-down</p>
+        <p class="m">forest green, white plates</p>
+        <p class="m"><b>For</b> Healthy and fusion restaurants.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="31" data-niche="cafe" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t31-buah-gelap.webp" aria-label="Open #31 buah gelap full size"><img src="assets/pins/t31-buah-gelap.webp" alt="#31 buah gelap design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span>dark</span><span class="a">ai pin</span></p>
+        <h2>#31 buah gelap</h2>
+        <p class="mood">Dark and fresh</p>
+        <p class="m">slate, orange, fruit colours</p>
+        <p class="m"><b>For</b> Juice bars, salad bars.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="32" data-niche="restaurant" data-tier="high" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t32-pizza-roda.webp" aria-label="Open #32 pizza roda full size"><img src="assets/pins/t32-pizza-roda.webp" alt="#32 pizza roda design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>high</span><span>light</span></p>
+        <h2>#32 pizza roda</h2>
+        <p class="mood">Rotating wheel hero</p>
+        <p class="m">white, red, black</p>
+        <p class="m"><b>For</b> Pizza places, multi-branch.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="33" data-niche="cafe" data-tier="medium" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t33-karamel.webp" aria-label="Open #33 karamel full size"><img src="assets/pins/t33-karamel.webp" alt="#33 karamel design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span>light</span></p>
+        <h2>#33 karamel</h2>
+        <p class="mood">Warm with floating cups</p>
+        <p class="m">caramel tan, dark brown</p>
+        <p class="m"><b>For</b> Coffee shops selling beans.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="34" data-niche="cafe" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t34-stroberi.webp" aria-label="Open #34 stroberi full size"><img src="assets/pins/t34-stroberi.webp" alt="#34 stroberi design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span>light</span></p>
+        <h2>#34 stroberi</h2>
+        <p class="mood">Sweet and cheerful</p>
+        <p class="m">pink, strawberry red</p>
+        <p class="m"><b>For</b> Cake shops, home bakers.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="35" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t35-rempah-hijau.webp" aria-label="Open #35 rempah hijau full size"><img src="assets/pins/t35-rempah-hijau.webp" alt="#35 rempah hijau design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span></p>
+        <h2>#35 rempah hijau</h2>
+        <p class="mood">Spiced and rich</p>
+        <p class="m">dark green, orange</p>
+        <p class="m"><b>For</b> Indian, Indonesian, spice-led food.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="36" data-niche="restaurant" data-tier="high" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t36-menu-hitam.webp" aria-label="Open #36 menu hitam full size"><img src="assets/pins/t36-menu-hitam.webp" alt="#36 menu hitam design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>high</span><span>dark</span></p>
+        <h2>#36 menu hitam</h2>
+        <p class="mood">Scattered ingredients</p>
+        <p class="m">black, warm food colours</p>
+        <p class="m"><b>For</b> Steak, grill, chef menus.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="37" data-niche="restaurant" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t37-mangkuk-segar.webp" aria-label="Open #37 mangkuk segar full size"><img src="assets/pins/t37-mangkuk-segar.webp" alt="#37 mangkuk segar design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>free</span><span>light</span></p>
+        <h2>#37 mangkuk segar</h2>
+        <p class="mood">Fresh and healthy</p>
+        <p class="m">cream, leaf green</p>
+        <p class="m"><b>For</b> Bowls, salads, healthy lunch.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="38" data-niche="restaurant" data-tier="free" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t38-pesan-antar.webp" aria-label="Open #38 pesan antar full size"><img src="assets/pins/t38-pesan-antar.webp" alt="#38 pesan antar design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>free</span><span>dark</span></p>
+        <h2>#38 pesan antar</h2>
+        <p class="mood">App-like ordering</p>
+        <p class="m">black, yellow</p>
+        <p class="m"><b>For</b> Delivery-heavy fast food.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="39" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t39-rasa-oranye.webp" aria-label="Open #39 rasa oranye full size"><img src="assets/pins/t39-rasa-oranye.webp" alt="#39 rasa oranye design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span></p>
+        <h2>#39 rasa oranye</h2>
+        <p class="mood">Dark modern</p>
+        <p class="m">black, orange</p>
+        <p class="m"><b>For</b> Steak and grill restaurants.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="40" data-niche="restaurant" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t40-bistro-hijau.webp" aria-label="Open #40 bistro hijau full size"><img src="assets/pins/t40-bistro-hijau.webp" alt="#40 bistro hijau design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>free</span><span>light</span></p>
+        <h2>#40 bistro hijau</h2>
+        <p class="mood">Friendly bistro</p>
+        <p class="m">cream, dark green</p>
+        <p class="m"><b>For</b> Family restaurants, pasta.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="41" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t41-sushi-modern.webp" aria-label="Open #41 sushi modern full size"><img src="assets/pins/t41-sushi-modern.webp" alt="#41 sushi modern design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span></p>
+        <h2>#41 sushi modern</h2>
+        <p class="mood">Modern contrast</p>
+        <p class="m">black, white, red</p>
+        <p class="m"><b>For</b> Sushi and Japanese.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="42" data-niche="restaurant" data-tier="medium" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t42-bistro-emas.webp" aria-label="Open #42 bistro emas full size"><img src="assets/pins/t42-bistro-emas.webp" alt="#42 bistro emas design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>light</span></p>
+        <h2>#42 bistro emas</h2>
+        <p class="mood">Warm bistro</p>
+        <p class="m">brown, gold, cream</p>
+        <p class="m"><b>For</b> Bistros, all-day restaurants.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="43" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t43-hitam-emas.webp" aria-label="Open #43 hitam emas full size"><img src="assets/pins/t43-hitam-emas.webp" alt="#43 hitam emas design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span></p>
+        <h2>#43 hitam emas</h2>
+        <p class="mood">Fine dining glow</p>
+        <p class="m">black, gold</p>
+        <p class="m"><b>For</b> Fine dining with reservations.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="44" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t44-hijau-tua.webp" aria-label="Open #44 hijau tua full size"><img src="assets/pins/t44-hijau-tua.webp" alt="#44 hijau tua design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span><span class="a">ai pin</span></p>
+        <h2>#44 hijau tua</h2>
+        <p class="mood">Rich and spiced</p>
+        <p class="m">deep green, gold</p>
+        <p class="m"><b>For</b> Indian, Indonesian restaurants.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="45" data-niche="restaurant" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t45-mie-merah.webp" aria-label="Open #45 mie merah full size"><img src="assets/pins/t45-mie-merah.webp" alt="#45 mie merah design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>free</span><span>light</span><span class="a">ai pin</span></p>
+        <h2>#45 mie merah</h2>
+        <p class="mood">Bold and appetising</p>
+        <p class="m">red, cream</p>
+        <p class="m"><b>For</b> Noodle and Asian restaurants.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="46" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t46-bella-gelap.webp" aria-label="Open #46 bella gelap full size"><img src="assets/pins/t46-bella-gelap.webp" alt="#46 bella gelap design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span></p>
+        <h2>#46 bella gelap</h2>
+        <p class="mood">Warm dark</p>
+        <p class="m">black, gold</p>
+        <p class="m"><b>For</b> Restaurants with steak and pasta.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="47" data-niche="workshop" data-tier="high" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t47-voltworks.webp" aria-label="Open #47 voltworks full size"><img src="assets/pins/t47-voltworks.webp" alt="#47 voltworks design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>high</span><span>light</span></p>
+        <h2>#47 voltworks</h2>
+        <p class="mood">Industrial brutalism</p>
+        <p class="m">concrete grey, black, lime</p>
+        <p class="m"><b>For</b> Electrical, fabrication, bold workshops.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="48" data-niche="workshop" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t48-presisi.webp" aria-label="Open #48 presisi full size"><img src="assets/pins/t48-presisi.webp" alt="#48 presisi design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>medium</span><span>dark</span></p>
+        <h2>#48 presisi</h2>
+        <p class="mood">Precision premium</p>
+        <p class="m">black, orange red</p>
+        <p class="m"><b>For</b> CNC, lathe, machining.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="49" data-niche="restaurant" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t49-kaca-pastel.webp" aria-label="Open #49 kaca pastel full size"><img src="assets/pins/t49-kaca-pastel.webp" alt="#49 kaca pastel design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>free</span><span>light</span></p>
+        <h2>#49 kaca pastel</h2>
+        <p class="mood">Soft glass</p>
+        <p class="m">pastel blur, orange</p>
+        <p class="m"><b>For</b> Modern casual food, app promotion.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="50" data-niche="restaurant" data-tier="high" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t50-ristorante-gelap.webp" aria-label="Open #50 ristorante gelap full size"><img src="assets/pins/t50-ristorante-gelap.webp" alt="#50 ristorante gelap design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>high</span><span>dark</span></p>
+        <h2>#50 ristorante gelap</h2>
+        <p class="mood">Scattered ingredients, artful</p>
+        <p class="m">black, script white</p>
+        <p class="m"><b>For</b> Italian, chef restaurants.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="51" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t51-steakhouse.webp" aria-label="Open #51 steakhouse full size"><img src="assets/pins/t51-steakhouse.webp" alt="#51 steakhouse design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span></p>
+        <h2>#51 steakhouse</h2>
+        <p class="mood">Classic steakhouse</p>
+        <p class="m">black, orange</p>
+        <p class="m"><b>For</b> Steakhouses, grills.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="52" data-niche="cafe" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t52-roti-kuning.webp" aria-label="Open #52 roti kuning full size"><img src="assets/pins/t52-roti-kuning.webp" alt="#52 roti kuning design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span>light</span><span class="a">ai pin</span></p>
+        <h2>#52 roti kuning</h2>
+        <p class="mood">Warm and torn paper</p>
+        <p class="m">yellow, cream</p>
+        <p class="m"><b>For</b> Bakeries, cookie shops.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="53" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t53-grill-kapur.webp" aria-label="Open #53 grill kapur full size"><img src="assets/pins/t53-grill-kapur.webp" alt="#53 grill kapur design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span></p>
+        <h2>#53 grill kapur</h2>
+        <p class="mood">Chalkboard grill</p>
+        <p class="m">black, chalk white, green</p>
+        <p class="m"><b>For</b> BBQ and grill houses.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="54" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t54-kuliner-sobek.webp" aria-label="Open #54 kuliner sobek full size"><img src="assets/pins/t54-kuliner-sobek.webp" alt="#54 kuliner sobek design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span></p>
+        <h2>#54 kuliner sobek</h2>
+        <p class="mood">Torn sections, script</p>
+        <p class="m">black, white, orange script</p>
+        <p class="m"><b>For</b> Family restaurants.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="55" data-niche="workshop" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t55-baja-bersih.webp" aria-label="Open #55 baja bersih full size"><img src="assets/pins/t55-baja-bersih.webp" alt="#55 baja bersih design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>free</span><span>light</span></p>
+        <h2>#55 baja bersih</h2>
+        <p class="mood">Clean corporate</p>
+        <p class="m">steel grey, white, teal</p>
+        <p class="m"><b>For</b> Steel and material suppliers.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="56" data-niche="restaurant" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t56-bara.webp" aria-label="Open #56 bara full size"><img src="assets/pins/t56-bara.webp" alt="#56 bara design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>medium</span><span>dark</span></p>
+        <h2>#56 bara</h2>
+        <p class="mood">Charcoal grill</p>
+        <p class="m">charcoal, wood, red</p>
+        <p class="m"><b>For</b> Sate, iga bakar, grills.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="57" data-niche="workshop" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t57-otomasi.webp" aria-label="Open #57 otomasi full size"><img src="assets/pins/t57-otomasi.webp" alt="#57 otomasi design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>medium</span><span>dark</span></p>
+        <h2>#57 otomasi</h2>
+        <p class="mood">Industrial cinematic</p>
+        <p class="m">black, orange</p>
+        <p class="m"><b>For</b> Manufacturing, automation.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="58" data-niche="workshop" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t58-suku-cadang.webp" aria-label="Open #58 suku cadang full size"><img src="assets/pins/t58-suku-cadang.webp" alt="#58 suku cadang design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>medium</span><span>dark</span></p>
+        <h2>#58 suku cadang</h2>
+        <p class="mood">Shop and promos</p>
+        <p class="m">black, red</p>
+        <p class="m"><b>For</b> Auto parts, oil change, tyre shops.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="59" data-niche="workshop" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t59-alat-berat.webp" aria-label="Open #59 alat berat full size"><img src="assets/pins/t59-alat-berat.webp" alt="#59 alat berat design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>medium</span><span>dark</span></p>
+        <h2>#59 alat berat</h2>
+        <p class="mood">Heavy and powerful</p>
+        <p class="m">black, red</p>
+        <p class="m"><b>For</b> Heavy equipment, construction.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="60" data-niche="restaurant" data-tier="high" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t60-piring-putar.webp" aria-label="Open #60 piring putar full size"><img src="assets/pins/t60-piring-putar.webp" alt="#60 piring putar design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>high</span><span>dark</span></p>
+        <h2>#60 piring putar</h2>
+        <p class="mood">Rotating plate menu</p>
+        <p class="m">black, yellow</p>
+        <p class="m"><b>For</b> Restobars, menu-led restaurants.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="61" data-niche="workshop" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t61-servis-mobil.webp" aria-label="Open #61 servis mobil full size"><img src="assets/pins/t61-servis-mobil.webp" alt="#61 servis mobil design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>free</span><span>light</span></p>
+        <h2>#61 servis mobil</h2>
+        <p class="mood">Practical and trusted</p>
+        <p class="m">white, red, dark blue</p>
+        <p class="m"><b>For</b> Car workshops, bengkel mobil.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="62" data-niche="workshop" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t62-tambang.webp" aria-label="Open #62 tambang full size"><img src="assets/pins/t62-tambang.webp" alt="#62 tambang design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>medium</span><span>dark</span></p>
+        <h2>#62 tambang</h2>
+        <p class="mood">Heavy industry</p>
+        <p class="m">black, orange</p>
+        <p class="m"><b>For</b> Mining, heavy services, pricing pages.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="63" data-niche="workshop" data-tier="free" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t63-listrik-kuning.webp" aria-label="Open #63 listrik kuning full size"><img src="assets/pins/t63-listrik-kuning.webp" alt="#63 listrik kuning design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>free</span><span>dark</span></p>
+        <h2>#63 listrik kuning</h2>
+        <p class="mood">Bold and direct</p>
+        <p class="m">black, yellow</p>
+        <p class="m"><b>For</b> Electricians, installers.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="64" data-niche="workshop" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t64-forge-oranye.webp" aria-label="Open #64 forge oranye full size"><img src="assets/pins/t64-forge-oranye.webp" alt="#64 forge oranye design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>medium</span><span>dark</span></p>
+        <h2>#64 forge oranye</h2>
+        <p class="mood">Industrial glow</p>
+        <p class="m">black, orange</p>
+        <p class="m"><b>For</b> Factories, automation, welding.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="65" data-niche="workshop" data-tier="high" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t65-satu-cahaya.webp" aria-label="Open #65 satu cahaya full size"><img src="assets/pins/t65-satu-cahaya.webp" alt="#65 satu cahaya design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>high</span><span>dark</span></p>
+        <h2>#65 satu cahaya</h2>
+        <p class="mood">Elegant one glow</p>
+        <p class="m">black, orange glow</p>
+        <p class="m"><b>For</b> Premium electricians, lighting.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="66" data-niche="workshop" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t66-konstruksi.webp" aria-label="Open #66 konstruksi full size"><img src="assets/pins/t66-konstruksi.webp" alt="#66 konstruksi design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>medium</span><span>dark</span></p>
+        <h2>#66 konstruksi</h2>
+        <p class="mood">Strong and busy</p>
+        <p class="m">black, orange</p>
+        <p class="m"><b>For</b> Construction, contractors.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="67" data-niche="workshop" data-tier="medium" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t67-pabrik-kuning.webp" aria-label="Open #67 pabrik kuning full size"><img src="assets/pins/t67-pabrik-kuning.webp" alt="#67 pabrik kuning design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>medium</span><span>dark</span><span class="a">ai pin</span></p>
+        <h2>#67 pabrik kuning</h2>
+        <p class="mood">Industrial plant</p>
+        <p class="m">black, yellow</p>
+        <p class="m"><b>For</b> Plants and factories.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="68" data-niche="workshop" data-tier="free" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t68-cnc-merah.webp" aria-label="Open #68 cnc merah full size"><img src="assets/pins/t68-cnc-merah.webp" alt="#68 cnc merah design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>free</span><span>dark</span></p>
+        <h2>#68 cnc merah</h2>
+        <p class="mood">Poster-like</p>
+        <p class="m">black, red, steel</p>
+        <p class="m"><b>For</b> CNC and machining (as a hero idea).</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="69" data-niche="restaurant" data-tier="free" data-tone="light" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t69-pasta-krem.webp" aria-label="Open #69 pasta krem full size"><img src="assets/pins/t69-pasta-krem.webp" alt="#69 pasta krem design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>restaurant</span><span>free</span><span>light</span><span class="a">ai pin</span></p>
+        <h2>#69 pasta krem</h2>
+        <p class="mood">Soft blobs</p>
+        <p class="m">cream, terracotta, olive</p>
+        <p class="m"><b>For</b> Pasta and Italian.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="70" data-niche="workshop" data-tier="free" data-tone="dark" data-old="false">
+      <button type="button" class="shot" data-src="assets/pins/t70-sewa-alat.webp" aria-label="Open #70 sewa alat full size"><img src="assets/pins/t70-sewa-alat.webp" alt="#70 sewa alat design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>free</span><span>dark</span></p>
+        <h2>#70 sewa alat</h2>
+        <p class="mood">Practical catalogue</p>
+        <p class="m">dark grey, yellow</p>
+        <p class="m"><b>For</b> Equipment rental.</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/071-02-nocturne-coffee-lab.png" aria-label="Open Nocturne full size"><img src="assets/older/071-02-nocturne-coffee-lab.png" alt="Nocturne design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span class="o">old</span><span class="o">built</span></p>
+        <h2>Nocturne</h2>
+        <p class="mood">Dark and warm</p>
+        
+        <p class="m"><b>For</b> Evening cafes, coffee bars, open late</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/072-03-tropical-coffee-garden.png" aria-label="Open Tropical Garden full size"><img src="assets/older/072-03-tropical-coffee-garden.png" alt="Tropical Garden design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span class="o">old</span></p>
+        <h2>Tropical Garden</h2>
+        <p class="mood">Fresh and lively</p>
+        
+        <p class="m"><b>For</b> Bali daytime cafes, garden seating, smoothie and brunch places</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/073-08-slow-morning.png" aria-label="Open Slow Morning full size"><img src="assets/older/073-08-slow-morning.png" alt="Slow Morning design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span class="o">old</span></p>
+        <h2>Slow Morning</h2>
+        <p class="mood">Light and calm</p>
+        
+        <p class="m"><b>For</b> Brunch, wellness, bright interiors</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/074-10-mojokerto-corner-table.png" aria-label="Open Corner Table full size"><img src="assets/older/074-10-mojokerto-corner-table.png" alt="Corner Table design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span class="o">old</span></p>
+        <h2>Corner Table</h2>
+        <p class="mood">Loud and confident</p>
+        
+        <p class="m"><b>For</b> Young crowd, local favorites, big menus</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/075-04-swiss-coffee-index.png" aria-label="Open Swiss Index full size"><img src="assets/older/075-04-swiss-coffee-index.png" alt="Swiss Index design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span class="o">old</span></p>
+        <h2>Swiss Index</h2>
+        <p class="mood">Clean and modern</p>
+        
+        <p class="m"><b>For</b> Specialty coffee, design-led owners, minimal interiors</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/076-05-sunset-coffeehouse.png" aria-label="Open Retro Coffeehouse full size"><img src="assets/older/076-05-sunset-coffeehouse.png" alt="Retro Coffeehouse design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span class="o">old</span></p>
+        <h2>Retro Coffeehouse</h2>
+        <p class="mood">Nostalgic and warm</p>
+        
+        <p class="m"><b>For</b> Kopi-style cafes, retro interiors, owners with a sense of humour</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/077-06-kissaten-journal.png" aria-label="Open Kissaten full size"><img src="assets/older/077-06-kissaten-journal.png" alt="Kissaten design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span class="o">old</span></p>
+        <h2>Kissaten</h2>
+        <p class="mood">Quiet and crafted</p>
+        
+        <p class="m"><b>For</b> Japanese-style coffee bars, slow bars, calm spaces</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/078-07-cobalt-roastery.png" aria-label="Open Block Poster full size"><img src="assets/older/078-07-cobalt-roastery.png" alt="Block Poster design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span class="o">old</span></p>
+        <h2>Block Poster</h2>
+        <p class="mood">Bold and graphic</p>
+        
+        <p class="m"><b>For</b> Grab-and-go, delivery-heavy cafes, bright brands</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/079-04-still-room-typographic.png" aria-label="Open Still Room full size"><img src="assets/older/079-04-still-room-typographic.png" alt="Still Room design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span class="o">old</span></p>
+        <h2>Still Room</h2>
+        <p class="mood">Minimal and typographic</p>
+        
+        <p class="m"><b>For</b> Tasting bars, specialty roasters, owners who love type</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/080-03-pebble-pop-collage.png" aria-label="Open Pebble Pop full size"><img src="assets/older/080-03-pebble-pop-collage.png" alt="Pebble Pop design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>free</span><span class="o">old</span></p>
+        <h2>Pebble Pop</h2>
+        <p class="mood">Playful and sweet</p>
+        
+        <p class="m"><b>For</b> Bakeries, dessert spots, family cafes</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="workshop" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/081-01-engineering-blue.png" aria-label="Open Engineering Blue full size"><img src="assets/older/081-01-engineering-blue.png" alt="Engineering Blue design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>free</span><span class="o">old</span></p>
+        <h2>Engineering Blue</h2>
+        <p class="mood">Trustworthy</p>
+        
+        <p class="m"><b>For</b> Workshops, machine shops, first website</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="workshop" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/082-03-precision-minimal.png" aria-label="Open Precision Minimal full size"><img src="assets/older/082-03-precision-minimal.png" alt="Precision Minimal design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>free</span><span class="o">old</span></p>
+        <h2>Precision Minimal</h2>
+        <p class="mood">Clean and technical</p>
+        
+        <p class="m"><b>For</b> Precision parts, CNC, suppliers with good product photos</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/083-concrete-cream-homepage.png" aria-label="Open Concrete &amp; Cream full size"><img src="assets/older/083-concrete-cream-homepage.png" alt="Concrete &amp; Cream design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span><span class="o">built</span></p>
+        <h2>Concrete &amp; Cream</h2>
+        <p class="mood">Quiet luxury</p>
+        
+        <p class="m"><b>For</b> Industrial interiors, late-night cafes, multi-branch</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/084-01-botanical-editorial-v2.png" aria-label="Open Botanical Editorial full size"><img src="assets/older/084-01-botanical-editorial-v2.png" alt="Botanical Editorial design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span></p>
+        <h2>Botanical Editorial</h2>
+        <p class="mood">Calm and natural</p>
+        
+        <p class="m"><b>For</b> Cafes with greenery, a strong building or outdoor seating</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/085-03-social-club-v2.png" aria-label="Open Social Club full size"><img src="assets/older/085-03-social-club-v2.png" alt="Social Club design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span></p>
+        <h2>Social Club</h2>
+        <p class="mood">Bold and fun</p>
+        
+        <p class="m"><b>For</b> Young crowd, a strong product, loud branding</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/086-02-after-hours-v2.png" aria-label="Open After Hours full size"><img src="assets/older/086-02-after-hours-v2.png" alt="After Hours design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span></p>
+        <h2>After Hours</h2>
+        <p class="mood">Dark and local</p>
+        
+        <p class="m"><b>For</b> Neighbourhood cafes busy at night, cafes with their own bottled products</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/087-01-northline-editorial.png" aria-label="Open Northline full size"><img src="assets/older/087-01-northline-editorial.png" alt="Northline design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span></p>
+        <h2>Northline</h2>
+        <p class="mood">Urban and quick</p>
+        
+        <p class="m"><b>For</b> City coffee bars, takeaway, office crowds</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/088-02-la-luna-cinematic.png" aria-label="Open La Luna full size"><img src="assets/older/088-02-la-luna-cinematic.png" alt="La Luna design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span></p>
+        <h2>La Luna</h2>
+        <p class="mood">Intimate and cinematic</p>
+        
+        <p class="m"><b>For</b> Espresso bars, wine-and-coffee places, date-night venues</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/089-09-deco-after-dark.png" aria-label="Open Deco After Dark full size"><img src="assets/older/089-09-deco-after-dark.png" alt="Deco After Dark design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span></p>
+        <h2>Deco After Dark</h2>
+        <p class="mood">Glamorous</p>
+        
+        <p class="m"><b>For</b> Cocktail-and-coffee bars, venues with a grand interior</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/090-05-garden-table-botanical.png" aria-label="Open Botanical Almanac full size"><img src="assets/older/090-05-garden-table-botanical.png" alt="Botanical Almanac design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span></p>
+        <h2>Botanical Almanac</h2>
+        <p class="mood">Vintage and hand-made</p>
+        
+        <p class="m"><b>For</b> Garden brunch cafes, farm-to-table, greenhouses</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/091-09-flora-frida-botanical.png" aria-label="Open Bloom full size"><img src="assets/older/091-09-flora-frida-botanical.png" alt="Bloom design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span></p>
+        <h2>Bloom</h2>
+        <p class="mood">Bright and joyful</p>
+        
+        <p class="m"><b>For</b> All-day cafes, patisseries, Instagram-friendly spaces</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/092-07-good-measure-product-catalog.png" aria-label="Open Good Measure full size"><img src="assets/older/092-07-good-measure-product-catalog.png" alt="Good Measure design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span></p>
+        <h2>Good Measure</h2>
+        <p class="mood">Clean shop</p>
+        
+        <p class="m"><b>For</b> Roasters and cafes that sell beans online</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/093-08-daybreak-social-zine.png" aria-label="Open Daybreak full size"><img src="assets/older/093-08-daybreak-social-zine.png" alt="Daybreak design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span></p>
+        <h2>Daybreak</h2>
+        <p class="mood">Loud community zine</p>
+        
+        <p class="m"><b>For</b> Cafes with events, creative hangouts, young neighbourhoods</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/094-10-moss-mountain-cinematic.png" aria-label="Open Moss Mountain full size"><img src="assets/older/094-10-moss-mountain-cinematic.png" alt="Moss Mountain design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span></p>
+        <h2>Moss Mountain</h2>
+        <p class="mood">Wild and cinematic</p>
+        
+        <p class="m"><b>For</b> Mountain, forest and nature cafes, eco venues in Bali</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="workshop" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/095-05-technical-blueprint.png" aria-label="Open Technical Blueprint full size"><img src="assets/older/095-05-technical-blueprint.png" alt="Technical Blueprint design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>medium</span><span class="o">old</span><span class="o">built</span></p>
+        <h2>Technical Blueprint</h2>
+        <p class="mood">Engineering confidence</p>
+        
+        <p class="m"><b>For</b> Machine shops, fabrication, repair</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="workshop" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/096-02-workshop-journal.png" aria-label="Open Workshop Journal full size"><img src="assets/older/096-02-workshop-journal.png" alt="Workshop Journal design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>medium</span><span class="o">old</span></p>
+        <h2>Workshop Journal</h2>
+        <p class="mood">Crafted and human</p>
+        
+        <p class="m"><b>For</b> Family workshops with a story and real photos</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="workshop" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/097-dcspaces-co-uk-thumb.webp" aria-label="Open Local Builder full size"><img src="assets/older/097-dcspaces-co-uk-thumb.webp" alt="Local Builder design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>free</span><span class="o">old</span></p>
+        <h2>Local Builder</h2>
+        <p class="mood">Friendly and local</p>
+        
+        <p class="m"><b>For</b> Workshops and builders that win jobs from nearby areas</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="workshop" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/098-thewmall-com-thumb.webp" aria-label="Open Simple and Calm full size"><img src="assets/older/098-thewmall-com-thumb.webp" alt="Simple and Calm design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>free</span><span class="o">old</span></p>
+        <h2>Simple and Calm</h2>
+        <p class="mood">Light, one accent color</p>
+        
+        <p class="m"><b>For</b> Workshops or suppliers with few photos</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="workshop" data-tier="free" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/099-withwise-com-thumb.webp" aria-label="Open B2B Serif full size"><img src="assets/older/099-withwise-com-thumb.webp" alt="B2B Serif design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>free</span><span class="o">old</span></p>
+        <h2>B2B Serif</h2>
+        <p class="mood">Serious but warm</p>
+        
+        <p class="m"><b>For</b> Suppliers selling to factories</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/100-myfrida-com-thumb.webp" aria-label="Open Color Worlds full size"><img src="assets/older/100-myfrida-com-thumb.webp" alt="Color Worlds design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span></p>
+        <h2>Color Worlds</h2>
+        <p class="mood">Bright and playful</p>
+        
+        <p class="m"><b>For</b> Dessert, smoothie, juice and gelato bars</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="cafe" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/101-06-casa-do-grao-delta-story.png" aria-label="Open Heritage Collage full size"><img src="assets/older/101-06-casa-do-grao-delta-story.png" alt="Heritage Collage design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>cafe</span><span>medium</span><span class="o">old</span></p>
+        <h2>Heritage Collage</h2>
+        <p class="mood">Rich and storied</p>
+        
+        <p class="m"><b>For</b> Cafes with a real history, roasteries, family brands</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="workshop" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/102-northeasttomato-com-thumb.webp" aria-label="Open Manufacturer Partner full size"><img src="assets/older/102-northeasttomato-com-thumb.webp" alt="Manufacturer Partner design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>medium</span><span class="o">old</span></p>
+        <h2>Manufacturer Partner</h2>
+        <p class="mood">Warm and clear</p>
+        
+        <p class="m"><b>For</b> Manufacturers, private label, food and packaging factories</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="workshop" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/103-konkelectrical-com-thumb.webp" aria-label="Open Dark Precision full size"><img src="assets/older/103-konkelectrical-com-thumb.webp" alt="Dark Precision design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>medium</span><span class="o">old</span></p>
+        <h2>Dark Precision</h2>
+        <p class="mood">Premium and technical</p>
+        
+        <p class="m"><b>For</b> Electrical, automation, precision machining</p>
+      </figcaption>
+    </figure>
+    <figure class="t" data-num="" data-niche="workshop" data-tier="medium" data-tone="" data-old="true">
+      <button type="button" class="shot" data-src="assets/older/104-dairyfoodbg-com-thumb.webp" aria-label="Open Factory Diorama full size"><img src="assets/older/104-dairyfoodbg-com-thumb.webp" alt="Factory Diorama design" loading="lazy"></button>
+      <figcaption>
+        <p class="tags"><span>workshop</span><span>medium</span><span class="o">old</span></p>
+        <h2>Factory Diorama</h2>
+        <p class="mood">Friendly B2B</p>
+        
+        <p class="m"><b>For</b> Factories that sell in volume</p>
+      </figcaption>
+    </figure>
+  </section>
+</main>
+<dialog id="view"><img alt=""><button type="button">Close</button></dialog>
+<script>
+  const state = { niche: 'all', tier: 'all', tone: 'all', source: 'all' };
+  const cards = [...document.querySelectorAll('.t')];
+  const count = document.getElementById('count');
+  function apply() {
+    let n = 0;
+    cards.forEach((t) => {
+      const d = t.dataset;
+      const show = (state.niche === 'all' || d.niche === state.niche) && (state.tier === 'all' || d.tier === state.tier)
+        && (state.tone === 'all' || d.tone === state.tone) && (state.source === 'all' || (state.source === 'old') === (d.old === 'true'));
+      t.hidden = !show; if (show) n++;
+    });
+    count.textContent = n + ' shown.';
+  }
+  document.querySelectorAll('.filters button').forEach((b) => b.addEventListener('click', () => {
+    const group = Object.keys(b.dataset)[0];
+    state[group] = b.dataset[group];
+    document.querySelectorAll('[data-' + group + ']').forEach((x) => { if (x.tagName === 'BUTTON') x.setAttribute('aria-pressed', x === b); });
+    apply();
+  }));
+  const dlg = document.getElementById('view');
+  document.querySelectorAll('.shot').forEach((b) => b.addEventListener('click', () => { dlg.querySelector('img').src = b.dataset.src; dlg.showModal(); }));
+  dlg.addEventListener('click', () => dlg.close());
+  apply();
+  const selected = new URLSearchParams(location.search).get('template');
+  if (selected) {
+    const card = cards.find((item) => item.dataset.num === selected);
+    if (card) { card.scrollIntoView({ block: 'center' }); card.querySelector('.shot').click(); }
+  }
+</script>
+</body>
+</html>

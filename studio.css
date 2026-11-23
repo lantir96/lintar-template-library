@@ -1,0 +1,157 @@
+/* 01WORK workspace look: "Signal". Graphite, one lime signal color, condensed capitals, mono labels, square edges.
+   Shared by every workflow page. Chosen by Lintar on 2026-11-15 (mockup A).
+   Rules: one accent only (lime) for the current step, primary actions, ticks and labels. No gradients, no shadows,
+   no rounded cards. Headings are condensed capitals; small labels are mono. */
+:root {
+  color-scheme: dark;
+  --bg: #0c0d0b;
+  --panel: #131511;
+  --panel-2: #1a1d18;
+  --tx: #ecede6;
+  --mu: #8b8f84;
+  --ac: #c8f031;
+  --on-ac: #0c0d0b;
+  --ln: rgba(236, 237, 230, .12);
+  --ln-2: rgba(236, 237, 230, .28);
+  --mono: "IBM Plex Mono", Consolas, "Cascadia Mono", monospace;
+  --sans: "Archivo", "Segoe UI", Arial, sans-serif;
+  --gutter: clamp(16px, 4vw, 48px);
+  --bar: 56px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* Older names the pages still use, mapped onto Signal. */
+  --ink: var(--tx);
+  --ink-soft: #d6d8cf;
+  --cream: var(--bg);
+  --paper: var(--panel);
+  --paper-deep: var(--panel-2);
+  --on-dark: var(--tx);
+  --muted: var(--mu);
+  --muted-dark: var(--mu);
+  --brass: var(--ac);
+  --brass-dark: var(--ac);
+  --line: var(--ln);
+  --line-strong: var(--ln-2);
+  --line-dark: var(--ln);
+  --serif: var(--sans);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scrollbar-color: rgba(236, 237, 230, .25) transparent; }
+body { margin: 0; background: var(--bg); color: var(--tx); font: 400 15.5px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+::selection { background: var(--ac); color: var(--on-ac); }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { padding: 0; background: none; border: 0; cursor: pointer; }
+select option { background: var(--panel); color: var(--tx); }
+h1, h2, h3, p, ul, ol, figure, dl, dd { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+code { font-family: var(--mono); }
+:focus-visible { outline: 2px solid var(--ac); outline-offset: 3px; }
+svg.i { width: 14px; height: 14px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Headings: condensed capitals everywhere, whatever the page's own font settings say. */
+h1, h2, h3 { font-family: var(--sans) !important; font-stretch: 68% !important; font-weight: 780 !important; font-style: normal !important; text-transform: uppercase; letter-spacing: 0 !important; }
+h1 em, h2 em, h3 em { font-style: normal; color: var(--ac); }
+
+/* Pressed toggles (tabs, chips, picks) light up in the signal color. Chapter tabs keep their underline style. */
+button[aria-pressed="true"]:not(.chapters button) { background: var(--ac) !important; border-color: var(--ac) !important; color: var(--on-ac) !important; }
+button[aria-pressed="true"]:not(.chapters button) span { color: inherit !important; }
+
+/* Top bar */
+.bar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 28px; height: var(--bar); padding: 0 var(--gutter); background: var(--bg); border-bottom: 1px solid var(--ln); color: var(--tx); }
+.brand { flex: none; font: 800 18px/1 var(--sans); font-stretch: 70%; letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; }
+.brand::before { content: "01WORK / "; color: var(--mu); font-weight: 500; }
+.nav { display: flex; gap: clamp(14px, 2vw, 24px); min-width: 0; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+.nav a { position: relative; display: inline-flex; align-items: center; min-height: 44px; color: var(--mu); font-size: 14px; font-weight: 500; white-space: nowrap; transition: color .2s ease; }
+.nav a::after { content: ""; position: absolute; inset: auto 0 10px; height: 2px; background: var(--ac); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease-out); }
+.nav a[aria-current] { color: var(--tx); }
+.nav a[aria-current]::after { transform: scaleX(1); }
+@media (hover: hover) and (pointer: fine) { .nav a:hover { color: var(--tx); } }
+
+/* Masthead: no photo, just the title on graphite, like a sheet header. */
+.mast { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 0; padding: clamp(48px, 7vw, 88px) var(--gutter) 36px; background: var(--bg); border-bottom: 1px solid var(--ln); color: var(--tx); }
+.mast::before, .mast::after { content: none !important; }
+.mast h1 { max-width: 16em; font-size: clamp(2.6rem, 6.4vw, 5.8rem) !important; line-height: .92 !important; text-wrap: balance; }
+.mast p { max-width: 60ch; margin-top: 18px; color: var(--mu); font-size: 1.0625rem; line-height: 1.55; }
+.mast code { background: var(--panel-2) !important; color: var(--tx); padding: 1px 6px; }
+
+main { max-width: 1400px; margin: 0 auto; padding: 0 var(--gutter) 96px; }
+.fade { animation: fade-up .45s var(--ease-out) both; }
+@keyframes fade-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* Text controls */
+.link { position: relative; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; color: var(--tx); font-size: .9375rem; font-weight: 500; white-space: nowrap; }
+.link::after { content: ""; position: absolute; inset: auto 0 8px; height: 1px; background: var(--ln-2); transition: background-color .2s ease; }
+.link svg.i { transition: transform .3s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .link:hover::after { background: var(--ac); } .link:hover svg.i { transform: translateX(3px); } }
+.solid, .solid.on-dark { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 20px; background: var(--ac); color: var(--on-ac); font-size: .9375rem; font-weight: 650; white-space: nowrap; transition: filter .2s ease; }
+.solid:hover { filter: brightness(1.08); }
+.solid:active { filter: brightness(.92); }
+.small { color: var(--mu); font-size: .875rem; }
+
+/* Chapters (tab row) */
+.chapters { display: flex; gap: clamp(16px, 2.6vw, 34px); margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter); overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--ln); }
+.chapters::-webkit-scrollbar { display: none; }
+.chapters button { position: relative; display: inline-flex; align-items: center; min-height: 56px; color: var(--mu); font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; transition: color .2s ease; }
+.chapters button::after { content: ""; position: absolute; inset: auto 0 -1px; height: 2px; background: var(--ac); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease-out); }
+.chapters button[aria-pressed="true"] { color: var(--tx); }
+.chapters button[aria-pressed="true"]::after { transform: scaleX(1); }
+.chapters button:hover { color: var(--tx); }
+
+/* Filters */
+.find { display: flex; flex-wrap: wrap; align-items: end; gap: 12px 28px; padding: 22px 0 6px; }
+.find label { display: grid; gap: 4px; color: var(--mu); font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.find .grow { flex: 1 1 260px; }
+.find input, .find select { width: 100%; min-height: 40px; padding: 4px 0; background: transparent; border: 0; border-bottom: 1px solid var(--ln-2); border-radius: 0; color: var(--tx); font: 400 1rem var(--sans); letter-spacing: 0; text-transform: none; }
+.find input::placeholder { color: var(--mu); }
+.find input:focus-visible, .find select:focus-visible { outline: 0; border-bottom-color: var(--ac); box-shadow: 0 1px 0 var(--ac); }
+.notice { margin-top: 18px; padding: 12px 16px; background: var(--panel-2); border-left: 2px solid var(--ac); font-size: .9375rem; }
+.notice li + li { margin-top: 4px; }
+
+/* Section heads */
+.chapter-title { margin-top: 44px; font-size: clamp(2.25rem, 4vw, 3.5rem) !important; line-height: .95 !important; }
+.group-title { padding-bottom: 10px; border-bottom: 1px solid var(--ln-2); font-size: 1.5rem !important; line-height: 1.1 !important; }
+.group-title small { margin-left: 8px; color: var(--mu); font: 500 12px/1 var(--mono); letter-spacing: .06em; text-transform: none; }
+.pager { display: flex; justify-content: flex-end; margin-top: 40px; }
+.empty { padding: 48px 0; color: var(--mu); font: 500 1.25rem/1.3 var(--sans); }
+.status { color: var(--ac); font: 500 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+
+/* Tier comparison, shared by the arsenal and planner pages */
+.cmp { margin-top: 36px; }
+.cmp-row { display: grid; grid-template-columns: 150px repeat(3, minmax(0, 1fr)); }
+.cmp-row > * { padding: 14px 20px; border-top: 1px solid var(--ln); }
+.cmp-row .lab { padding-left: 0; color: var(--mu); font: 500 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.cmp-row .feat { background: var(--panel); border-top-color: var(--ln); box-shadow: inset 2px 0 0 var(--ac); }
+.cmp-head > * { border-top: 0; padding-top: 24px; padding-bottom: 22px; }
+.cmp-head h2 { font-size: clamp(2rem, 3.2vw, 2.875rem) !important; line-height: .95 !important; }
+.cmp-head h3 { margin-top: 8px; color: var(--mu); font-size: 1rem !important; }
+.cmp-head p { margin-top: 8px; color: var(--mu); font-size: .875rem; }
+.cmp-say { font: 400 1.0625rem/1.45 var(--sans); }
+.pick-note { color: var(--ac); font: 500 11px/1.4 var(--mono); }
+mark { background: rgba(200, 240, 49, .2); color: inherit; }
+.feat mark { background: rgba(200, 240, 49, .2); }
+
+dialog { max-width: min(1000px, 94vw); padding: 0; background: var(--panel); border: 1px solid var(--ln-2); color: var(--tx); }
+dialog::backdrop { background: rgba(5, 6, 5, .86); }
+dialog img { width: 100%; }
+dialog .cap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 16px; }
+dialog .cap p { font: 500 1rem/1.3 var(--sans); }
+
+@media (max-width: 940px) {
+  .cmp-row { grid-template-columns: minmax(0, 1fr); }
+  .cmp-row .lab { padding: 22px 0 6px; border-top: 1px solid var(--ln-2); color: var(--tx); font: 800 1.25rem/1.1 var(--sans); font-stretch: 70%; text-transform: uppercase; }
+  .cmp-row > [data-t] { border-top: 0; padding: 12px 16px; }
+  .cmp-row > [data-t]:not(.feat) { padding-left: 0; }
+  .cmp-row > [data-t]::before { content: attr(data-t); display: block; margin-bottom: 4px; color: var(--ac); font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+  .cmp-head { display: none; }
+}
+@media (max-width: 620px) {
+  .brand { display: none; }
+  .nav { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade { animation: none; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}
